@@ -1,0 +1,31 @@
+{
+  "type": "module",
+  "name": "tourist-safety-system-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "test-connection": "node test-connection.js",
+    "start": "node index.js",
+    "dev": "nodemon -r dotenv/config --experimental-json-modules index.js",
+    "init": "node scripts/initDB.js",
+    "seed": "node -r dotenv/config scripts/seed.js",
+    "clear-db": "node -r dotenv/config scripts/clearDB.js",
+    "seed-alerts": "node -r dotenv/config scripts/seedAlerts.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.20.1",
+    "multer": "^2.0.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}

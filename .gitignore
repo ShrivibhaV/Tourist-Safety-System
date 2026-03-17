@@ -1,0 +1,41 @@
+# dependencies
+node_modules/
+tourist-safety-system-frontend/node_modules/
+tourist-safety-system-backend/node_modules/
+
+# next.js
+tourist-safety-system-frontend/.next/
+tourist-safety-system-frontend/out/
+
+# production
+tourist-safety-system-frontend/build/
+tourist-safety-system-backend/dist/
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# env files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+tourist-safety-system-backend/.env
+tourist-safety-system-frontend/.env
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# venv
+tourist-safety-system-frontend/venv/
+
+# OS files
+.DS_Store
+Thumbs.db
