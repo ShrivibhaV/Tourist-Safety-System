@@ -2,6 +2,7 @@
 
 import { X, Phone, Plus, Trash2 } from "lucide-react"
 import { useState, useEffect } from "react"
+import API_BASE_URL from "@/lib/api"
 
 interface Contact {
   id?: string
@@ -44,7 +45,7 @@ export function ContactsModal({ open, onOpenChange }: ContactsModalProps) {
       const touristId = localStorage.getItem("touristId")
       if (touristId) {
         try {
-          const response = await fetch(`http://localhost:5000/api/dashboard/${touristId}`, {
+          const response = await fetch(`${API_BASE_URL}/api/dashboard/${touristId}`, {
             signal: AbortSignal.timeout(3000) // 3 second timeout
           })
 
@@ -98,7 +99,7 @@ export function ContactsModal({ open, onOpenChange }: ContactsModalProps) {
     const touristId = localStorage.getItem("touristId")
     if (touristId) {
       try {
-        await fetch(`http://localhost:5000/api/dashboard/contacts/${touristId}`, {
+        await fetch(`${API_BASE_URL}/api/dashboard/contacts/${touristId}`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(newContact),
@@ -119,7 +120,7 @@ export function ContactsModal({ open, onOpenChange }: ContactsModalProps) {
     const touristId = localStorage.getItem("touristId")
     if (touristId) {
       try {
-        await fetch(`http://localhost:5000/api/dashboard/contacts/${touristId}`, {
+        await fetch(`${API_BASE_URL}/api/dashboard/contacts/${touristId}`, {
           method: "DELETE",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ index }),

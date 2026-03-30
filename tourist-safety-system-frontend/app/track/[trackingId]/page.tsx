@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { MapPin, Clock, Activity, Navigation, AlertCircle } from "lucide-react";
+import API_BASE_URL from "@/lib/api";
 
 interface LocationData {
     touristName: string;
@@ -50,7 +51,7 @@ export default function TrackingPage() {
 
     const fetchTrackingData = async () => {
         try {
-            const response = await fetch(`http://localhost:5000/api/tracking/view/${trackingId}`);
+            const response = await fetch(`${API_BASE_URL}/api/tracking/view/${trackingId}`);
             const result = await response.json();
 
             if (result.success) {

@@ -2,6 +2,7 @@
 
 import { AlertTriangle, FileText } from "lucide-react"
 import { useState } from "react"
+import API_BASE_URL from "@/lib/api"
 
 export function SOSButton() {
   const [sosActive, setSosActive] = useState(false)
@@ -25,7 +26,7 @@ export function SOSButton() {
       navigator.geolocation.getCurrentPosition(
         async (position) => {
           try {
-            const response = await fetch("http://localhost:5000/api/sos", {
+            const response = await fetch(`${API_BASE_URL}/api/sos`, {
               method: "POST",
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify({

@@ -9,6 +9,7 @@ import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Shield, QrCode, Fingerprint, CheckCircle, ArrowLeft } from "lucide-react"
 import Link from "next/link"
+import API_BASE_URL from "@/lib/api"
 
 
 export default function RegisterPage() {
@@ -68,7 +69,7 @@ export default function RegisterPage() {
 
           console.log('Sending registration payload:', payload);
 
-          const response = await fetch('http://localhost:5000/api/tourists/register', {
+          const response = await fetch(`${API_BASE_URL}/api/tourists/register`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(payload)

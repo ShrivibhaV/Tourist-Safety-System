@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { LocationSharingDialog } from '@/components/modals/location-sharing-dialog';
+import API_BASE_URL from '@/lib/api';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
@@ -19,7 +20,7 @@ export default function LoginPage() {
     setLoading(true);
 
     try {
-      const response = await fetch('http://localhost:5000/api/tourists/login', {
+      const response = await fetch(`${API_BASE_URL}/api/tourists/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password })
@@ -149,14 +150,14 @@ export default function LoginPage() {
 
           try {
             // Get emergency contact from backend
-            const dashResponse = await fetch(`http://localhost:5000/api/dashboard/${touristId}`);
+            const dashResponse = await fetch(`${API_BASE_URL}/api/dashboard/${touristId}`);
             const dashResult = await dashResponse.json();
 
             if (dashResult.success && dashResult.data.emergencyContacts && dashResult.data.emergencyContacts.length > 0) {
               const contact = dashResult.data.emergencyContacts[0];
 
               // Start tracking session
-              const trackResponse = await fetch('http://localhost:5000/api/tracking/start', {
+              const trackResponse = await fetch(`${API_BASE_URL}/api/tracking/start`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({

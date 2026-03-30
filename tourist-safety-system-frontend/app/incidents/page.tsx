@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { ArrowLeft, FileText, MapPin, Calendar, AlertTriangle } from "lucide-react"
+import API_BASE_URL from "@/lib/api"
 
 interface Incident {
     _id: string
@@ -35,7 +36,7 @@ export default function IncidentsPage() {
                     return
                 }
 
-                const response = await fetch(`http://localhost:5000/api/incidents/my/${touristId}`)
+                const response = await fetch(`${API_BASE_URL}/api/incidents/my/${touristId}`)
                 const result = await response.json()
 
                 if (result.success) {

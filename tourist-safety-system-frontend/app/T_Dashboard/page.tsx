@@ -12,6 +12,7 @@ import { LocationSharingDialog } from "@/components/modals/location-sharing-dial
 import { useState, useEffect } from "react";
 import { MapPin } from "lucide-react";
 import { gpsTracker } from "@/services/gps-tracker";
+import API_BASE_URL from "@/lib/api";
 
 export default function Home() {
   const [showLocationDialog, setShowLocationDialog] = useState(false);
@@ -26,7 +27,7 @@ export default function Home() {
     if (!touristId) return;
 
     try {
-      const response = await fetch(`http://localhost:5000/api/tracking/active/${touristId}`);
+      const response = await fetch(`${API_BASE_URL}/api/tracking/active/${touristId}`);
       const result = await response.json();
       setHasActiveTracking(result.hasActiveTracking);
     } catch (error) {
@@ -40,7 +41,7 @@ export default function Home() {
 
     try {
       // Get emergency contact from backend
-      const dashResponse = await fetch(`http://localhost:5000/api/dashboard/${touristId}`);
+      const dashResponse = await fetch(`${API_BASE_URL}/api/dashboard/${touristId}`);
       const dashResult = await dashResponse.json();
 
       console.log('🔍 Dashboard data:', dashResult);
@@ -87,7 +88,7 @@ export default function Home() {
         }
 
         // Start tracking session with actual coordinates
-        const trackResponse = await fetch('http://localhost:5000/api/tracking/start', {
+        const trackResponse = await fetch(`${API_BASE_URL}/api/tracking/start`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(trackingData)
@@ -97,7 +98,7 @@ export default function Home() {
 
         if (trackResult.success) {
           // Send FIRST location update immediately with actual GPS
-          await fetch(`http://localhost:5000/api/tracking/update/${trackResult.data.trackingId}`, {
+          await fetch(`${API_BASE_URL}/api/tracking/update/${trackResult.data.trackingId}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({

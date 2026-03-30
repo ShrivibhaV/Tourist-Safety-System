@@ -3,6 +3,7 @@
 
 import { useEffect, useState } from 'react';
 import { MapPin, Shield, AlertTriangle, FileText } from 'lucide-react';
+import API_BASE_URL from '@/lib/api';
 
 interface DashboardStats {
   currentLocation: {
@@ -116,7 +117,7 @@ export function StatsCards() {
 
         // STEP 3: Update backend with current GPS coordinates (optional, non-blocking)
         try {
-          await fetch(`http://localhost:5000/api/dashboard/location/${touristId}`, {
+          await fetch(`${API_BASE_URL}/api/dashboard/location/${touristId}`, {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ latitude, longitude }),
@@ -128,7 +129,7 @@ export function StatsCards() {
 
         // STEP 4: Fetch other dashboard data from backend
         try {
-          const response = await fetch(`http://localhost:5000/api/dashboard/${touristId}`, {
+          const response = await fetch(`${API_BASE_URL}/api/dashboard/${touristId}`, {
             signal: AbortSignal.timeout(3000)
           });
 
@@ -170,7 +171,7 @@ export function StatsCards() {
 
       // STEP 4: Fetch other dashboard data from backend
       try {
-        const response = await fetch(`http://localhost:5000/api/dashboard/${touristId}`, {
+        const response = await fetch(`${API_BASE_URL}/api/dashboard/${touristId}`, {
           signal: AbortSignal.timeout(3000)
         });
 

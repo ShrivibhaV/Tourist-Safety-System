@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { AlertTriangle, MapPin, Clock, TrendingUp, Shield, Info } from "lucide-react";
+import API_BASE_URL from "@/lib/api";
 
 interface ActivityItem {
     id: string;
@@ -26,7 +27,7 @@ export function ActivityFeed() {
                 return;
             }
 
-            const response = await fetch(`http://localhost:5000/api/dashboard/activities/${touristId}`);
+            const response = await fetch(`${API_BASE_URL}/api/dashboard/activities/${touristId}`);
             const result = await response.json();
 
             if (result.success && result.data) {

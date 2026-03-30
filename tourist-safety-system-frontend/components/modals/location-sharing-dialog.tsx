@@ -2,6 +2,7 @@
 
 import { X, MapPin, Clock, Shield, Battery, AlertCircle } from "lucide-react";
 import { useState, useEffect } from "react";
+import API_BASE_URL from "@/lib/api";
 
 interface LocationSharingDialogProps {
     open: boolean;
@@ -29,7 +30,7 @@ export function LocationSharingDialog({
             const touristId = localStorage.getItem("touristId");
             if (!touristId) return;
 
-            const response = await fetch(`http://localhost:5000/api/dashboard/${touristId}`);
+            const response = await fetch(`${API_BASE_URL}/api/dashboard/${touristId}`);
             const result = await response.json();
 
             if (result.success && result.data.emergencyContacts && result.data.emergencyContacts.length > 0) {

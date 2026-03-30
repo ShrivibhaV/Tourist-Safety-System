@@ -1,6 +1,8 @@
 // GPS Tracker Service for Live Location Sharing
 // Handles background GPS tracking and updates to backend
 
+import API_BASE_URL from '@/lib/api';
+
 interface TrackingState {
     isTracking: boolean;
     trackingId: string | null;
@@ -78,7 +80,7 @@ class GPSTracker {
 
         // Send location update to backend
         try {
-            const response = await fetch(`http://localhost:5000/api/tracking/update/${this.state.trackingId}`, {
+            const response = await fetch(`${API_BASE_URL}/api/tracking/update/${this.state.trackingId}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

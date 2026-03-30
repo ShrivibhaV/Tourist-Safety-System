@@ -2,6 +2,7 @@
 
 import { X, Send, MapPin } from "lucide-react"
 import { useState } from "react"
+import API_BASE_URL from "@/lib/api"
 
 interface IncidentFormProps {
   open: boolean
@@ -81,7 +82,7 @@ export function IncidentForm({ open, onOpenChange }: IncidentFormProps) {
         status: "Pending",
       }
 
-      const response = await fetch("http://localhost:5000/api/incidents", {
+      const response = await fetch(`${API_BASE_URL}/api/incidents`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(incidentData),

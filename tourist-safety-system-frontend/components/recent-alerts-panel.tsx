@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { AlertTriangle, Cloud, MapPin, Bell, X } from "lucide-react";
+import API_BASE_URL from "@/lib/api";
 
 interface Alert {
     id: string;
@@ -27,7 +28,7 @@ export function RecentAlertsPanel() {
                 return;
             }
 
-            const response = await fetch(`http://localhost:5000/api/dashboard/alerts/${touristId}`);
+            const response = await fetch(`${API_BASE_URL}/api/dashboard/alerts/${touristId}`);
             const result = await response.json();
 
             if (result.success && result.data) {

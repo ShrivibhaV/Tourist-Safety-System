@@ -27,6 +27,7 @@ import {
 import Link from "next/link"
 import { AnomalyAlert } from "@/components/anomaly-alert"
 import type { AnomalyResult } from "@/lib/ai-anomaly-detection"
+import API_BASE_URL from "@/lib/api"
 
 // Mock data for demonstration
 const mockStats = {
@@ -129,7 +130,7 @@ export default function DashboardPage() {
   const fetchDashboardData = async () => {
     try {
       // Fetch stats
-      const statsResponse = await fetch('http://localhost:5000/api/security/stats')
+      const statsResponse = await fetch(`${API_BASE_URL}/api/security/stats`)
       const statsResult = await statsResponse.json()
 
       if (statsResult.success) {
@@ -137,7 +138,7 @@ export default function DashboardPage() {
       }
 
       // Fetch incidents
-      const incidentsResponse = await fetch('http://localhost:5000/api/security/incidents?limit=100')
+      const incidentsResponse = await fetch(`${API_BASE_URL}/api/security/incidents?limit=100`)
       const incidentsResult = await incidentsResponse.json()
 
       if (incidentsResult.success) {

@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { TrendingUp, PieChart, BarChart3, Activity } from "lucide-react";
+import API_BASE_URL from "@/lib/api";
 
 interface ChartData {
     incidentTrends: { date: string; count: number }[];
@@ -17,7 +18,7 @@ export function DashboardCharts() {
 
     const fetchChartData = async () => {
         try {
-            const response = await fetch(`http://localhost:5000/api/security/analytics?range=${timeRange}`);
+            const response = await fetch(`${API_BASE_URL}/api/security/analytics?range=${timeRange}`);
             const result = await response.json();
 
             if (result.success && result.data) {

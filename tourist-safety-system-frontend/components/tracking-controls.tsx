@@ -2,6 +2,7 @@
 
 import { MapPin, StopCircle, Share2, Clock, Activity } from "lucide-react";
 import { useState, useEffect } from "react";
+import API_BASE_URL from "@/lib/api";
 
 interface TrackingInfo {
     trackingId: string;
@@ -40,7 +41,7 @@ export function TrackingControls() {
         if (!touristId) return;
 
         try {
-            const response = await fetch(`http://localhost:5000/api/tracking/active/${touristId}`);
+            const response = await fetch(`${API_BASE_URL}/api/tracking/active/${touristId}`);
             const result = await response.json();
 
             if (result.success && result.hasActiveTracking) {
@@ -65,7 +66,7 @@ export function TrackingControls() {
 
         try {
             const touristId = localStorage.getItem("touristId");
-            const response = await fetch(`http://localhost:5000/api/tracking/stop/${trackingInfo.trackingId}`, {
+            const response = await fetch(`${API_BASE_URL}/api/tracking/stop/${trackingInfo.trackingId}`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ touristId })

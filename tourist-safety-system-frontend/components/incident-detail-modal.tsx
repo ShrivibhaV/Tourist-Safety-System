@@ -2,6 +2,7 @@
 
 import { X, MapPin, Clock, User, Phone, AlertTriangle, CheckCircle, FileText } from "lucide-react";
 import { useState } from "react";
+import API_BASE_URL from "@/lib/api";
 
 interface IncidentDetailModalProps {
     incident: any;
@@ -18,7 +19,7 @@ export function IncidentDetailModal({ incident, onClose, onUpdate }: IncidentDet
     const handleUpdateStatus = async (newStatus: string) => {
         setUpdating(true);
         try {
-            const response = await fetch(`http://localhost:5000/api/security/incidents/${incident.id}`, {
+            const response = await fetch(`${API_BASE_URL}/api/security/incidents/${incident.id}`, {
                 method: "PATCH",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ status: newStatus })
@@ -44,7 +45,7 @@ export function IncidentDetailModal({ incident, onClose, onUpdate }: IncidentDet
 
         setUpdating(true);
         try {
-            const response = await fetch(`http://localhost:5000/api/security/incidents/${incident.id}/assign`, {
+            const response = await fetch(`${API_BASE_URL}/api/security/incidents/${incident.id}/assign`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ officerName: assignedOfficer })
@@ -70,7 +71,7 @@ export function IncidentDetailModal({ incident, onClose, onUpdate }: IncidentDet
 
         setUpdating(true);
         try {
-            const response = await fetch(`http://localhost:5000/api/security/incidents/${incident.id}/notes`, {
+            const response = await fetch(`${API_BASE_URL}/api/security/incidents/${incident.id}/notes`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ note: notes })

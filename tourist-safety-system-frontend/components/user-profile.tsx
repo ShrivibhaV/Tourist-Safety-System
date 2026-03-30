@@ -5,6 +5,7 @@ import { User, Mail, Dessert as Passport, Globe, Languages, AlertCircle, Edit2, 
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import EditProfileForm from "./edit-profile-form"
+import API_BASE_URL from "@/lib/api"
 
 interface UserProfile {
   firstName: string
@@ -38,7 +39,7 @@ export default function UserProfile() {
           return
         }
 
-        const res = await fetch(`http://localhost:5000/api/profile/${touristId}`)
+        const res = await fetch(`${API_BASE_URL}/api/profile/${touristId}`)
         const data = await res.json()
 
         if (data.success) {
